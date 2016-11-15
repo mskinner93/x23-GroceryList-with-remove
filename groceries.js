@@ -6,11 +6,33 @@ function addItem()
   list = document.getElementById("listDisplay");
   var item;
   item = document.createElement("li");
+
+  var btnClose;
+  btnClose = document.createElement("BUTTON");
+  btnClose.classList.add("btn");
+  btnClose.classList.add("btn-danger");
+  btnClose.classList.add("btn-xs");
+  var iconClose;
+  iconClose = document.createElement("SPAN");
+  iconClose.classList.add("glyphicon");
+  iconClose.classList.add("glyphicon-remove");
+  btnClose.appendChild(iconClose);
+
+  btnClose.addEventListener("click", removeParentListItem);
+
   var itemName;
   itemName = document.createTextNode(input);
   item.appendChild(itemName);
+  item.appendChild(btnClose);
   list.appendChild(item);
   document.getElementById("newItem").value = "";
+}
+
+function removeParentListItem()
+{
+  var mom = this.parentNode;
+  var grandma = mom.parentNode;
+  grandma.removeChild(mom);
 }
 
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
